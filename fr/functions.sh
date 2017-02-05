@@ -47,12 +47,16 @@ grep -q '<p' <<< "$ligne14" && exitblaguesay && return || lignesay=$ligne14 && j
 
 
 jv_pg_ct_blaguesay() {
-direblaguesay=`echo $lignesay | sed -e "s/<.*/ /g" | sed -e "s/&quot;/ /g" | sed -e "s/&egrave;/è/g" | sed -e "s/&ucirc;/û/g" | sed -e "s/&eacute;/é/g" | sed -e "s/&Eacute;/é/g" | sed -e "s/&icirc;/î/g"  | sed -e "s/&agrave;/à/g" | sed -e "s/arr&ecirc;/ê/g" | sed -e "s/&ecirc;/ê/g" | sed -e "s/&#8217;/'/g" | sed -e "s/&ccedil;/ç/g" | sed -e "s/&rsquo;/'/g" | sed -e "s/h&ocirc;/ô/g"`
+direblaguesay=`echo $lignesay | sed -e "s/<.*/ /g" | sed -e "s/&quot;/ /g" | sed -e "s/&egrave;/è/g" | sed -e "s/&ucirc;/û/g" | sed -e "s/&eacute;/é/g" | sed -e "s/&Eacute;/é/g" | sed -e "s/&icirc;/î/g"  | sed -e "s/&agrave;/à/g" | sed -e "s/arr&ecirc;/ê/g" | sed -e "s/&ecirc;/ê/g" | sed -e "s/&#8217;/'/g" | sed -e "s/&ccedil;/ç/g" | sed -e "s/&rsquo;/'/g" | sed -e "s/h&ocirc;/ô/g" | sed -e "s/&amp;/et/g"`
 say "$direblaguesay"
 
 if [[ "$lignesay" =~ "?" ]]; then 
 	if [[ "$lignesay" =~ "quel" ]] || [[ "$lignesay" =~ "pourquoi" ]] || [[ "$lignesay" =~ "que" ]] || [[ "$lignesay" =~ "qu'est" ]]; then 
-	sleep 4 
+	mpg321 "$jv_dir/plugins/jarvis-blague/sonnette.mp3" > /dev/null 2>&1
+
+	sleep 4
+	mpg321 "$jv_dir/plugins/jarvis-blague/sonnette.mp3" > /dev/null 2>&1
+
 	say "   "
 	fi
 fi
@@ -61,5 +65,6 @@ fi
 
 
 exitblaguesay () {
+# echo ""
 rm $varchemblague > /dev/null 2>&1
 }
