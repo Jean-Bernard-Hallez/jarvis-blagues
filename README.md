@@ -25,7 +25,7 @@ jarvis: - Mon rêve, ce serait d'épouser un archéologue.
 jarvis: - Ah bon ? Et pourquoi ?
 jarvisla: - Parce que plus on vieillit, plus il vous aime.
 
-You: racontes moi une blagues
+You: racontes moi une blague
 jarvis: Qu'est ce qu'une blonde intelligente ? 
 jarvis: Un labrador.
 
