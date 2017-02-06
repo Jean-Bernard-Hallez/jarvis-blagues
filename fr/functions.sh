@@ -5,7 +5,7 @@
 
 
 jv_pg_ct_blague() {
-varchemblague="$jv_dir/plugins/jarvis-blague/toto.txt"
+varchemblague="$jv_dir/plugins/jarvis-blagues/toto.txt"
 
 wget -q - http://humour-blague.com/blagues-2/index.php# -O $varchemblague
 
@@ -52,10 +52,10 @@ say "$direblaguesay"
 
 if [[ "$lignesay" =~ "?" ]]; then 
 	if [[ "$lignesay" =~ "quel" ]] || [[ "$lignesay" =~ "pourquoi" ]] || [[ "$lignesay" =~ "que" ]] || [[ "$lignesay" =~ "qu'est" ]]; then 
-	mpg321 "$jv_dir/plugins/jarvis-blague/sonnette.mp3" > /dev/null 2>&1
+	mpg321 "$jv_dir/plugins/jarvis-blagues/sonnette.mp3" > /dev/null 2>&1
 
 	sleep 4
-	mpg321 "$jv_dir/plugins/jarvis-blague/sonnette.mp3" > /dev/null 2>&1
+	mpg321 "$jv_dir/plugins/jarvis-blagues/sonnette.mp3" > /dev/null 2>&1
 
 	say "   "
 	fi
