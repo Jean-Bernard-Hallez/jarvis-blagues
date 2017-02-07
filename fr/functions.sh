@@ -23,7 +23,18 @@ local ligne10=$(sed -n "246p" $varchemblague)
 local ligne11=$(sed -n "247p" $varchemblague)
 local ligne12=$(sed -n "248p" $varchemblague)
 local ligne13=$(sed -n "249p" $varchemblague)
-local ligne14=$(sed -n "250p" $varchemblague)
+local ligne15=$(sed -n "250p" $varchemblague)
+local ligne16=$(sed -n "251p" $varchemblague)
+local ligne17=$(sed -n "252p" $varchemblague)
+local ligne18=$(sed -n "253p" $varchemblague)
+local ligne19=$(sed -n "254p" $varchemblague)
+local ligne20=$(sed -n "255p" $varchemblague)
+local ligne22=$(sed -n "256p" $varchemblague)
+local ligne23=$(sed -n "257p" $varchemblague)
+local ligne24=$(sed -n "258p" $varchemblague)
+local ligne25=$(sed -n "259p" $varchemblague)
+
+
 
 
   grep -q '<p' <<< "$ligne" && exitblaguesay && return || lignesay=$ligne && jv_pg_ct_blaguesay
@@ -41,13 +52,26 @@ grep -q '<p' <<< "$ligne11" && exitblaguesay && return || lignesay=$ligne11 && j
 grep -q '<p' <<< "$ligne12" && exitblaguesay && return || lignesay=$ligne12 && jv_pg_ct_blaguesay
 grep -q '<p' <<< "$ligne13" && exitblaguesay && return || lignesay=$ligne13 && jv_pg_ct_blaguesay
 grep -q '<p' <<< "$ligne14" && exitblaguesay && return || lignesay=$ligne14 && jv_pg_ct_blaguesay
+grep -q '<p' <<< "$ligne15" && exitblaguesay && return || lignesay=$ligne15 && jv_pg_ct_blaguesay
+grep -q '<p' <<< "$ligne16" && exitblaguesay && return || lignesay=$ligne16 && jv_pg_ct_blaguesay
+grep -q '<p' <<< "$ligne17" && exitblaguesay && return || lignesay=$ligne17 && jv_pg_ct_blaguesay
+grep -q '<p' <<< "$ligne18" && exitblaguesay && return || lignesay=$ligne18 && jv_pg_ct_blaguesay
+grep -q '<p' <<< "$ligne19" && exitblaguesay && return || lignesay=$ligne19 && jv_pg_ct_blaguesay
+grep -q '<p' <<< "$ligne20" && exitblaguesay && return || lignesay=$ligne20 && jv_pg_ct_blaguesay
+grep -q '<p' <<< "$ligne21" && exitblaguesay && return || lignesay=$ligne21 && jv_pg_ct_blaguesay
+grep -q '<p' <<< "$ligne22" && exitblaguesay && return || lignesay=$ligne22 && jv_pg_ct_blaguesay
+grep -q '<p' <<< "$ligne23" && exitblaguesay && return || lignesay=$ligne23 && jv_pg_ct_blaguesay
+grep -q '<p' <<< "$ligne24" && exitblaguesay && return || lignesay=$ligne24 && jv_pg_ct_blaguesay
+grep -q '<p' <<< "$ligne25" && exitblaguesay && return || lignesay=$ligne25 && jv_pg_ct_blaguesay
+
+
 
 
 }
 
 
 jv_pg_ct_blaguesay() {
-direblaguesay=`echo $lignesay | sed -e "s/<.*/ /g" | sed -e "s/&quot;/ /g" | sed -e "s/&egrave;/è/g" | sed -e "s/&ucirc;/û/g" | sed -e "s/&eacute;/é/g" | sed -e "s/&Eacute;/é/g" | sed -e "s/&icirc;/î/g"  | sed -e "s/&agrave;/à/g" | sed -e "s/arr&ecirc;/ê/g" | sed -e "s/&ecirc;/ê/g" | sed -e "s/&#8217;/'/g" | sed -e "s/&ccedil;/ç/g" | sed -e "s/&rsquo;/'/g" | sed -e "s/h&ocirc;/ô/g" | sed -e "s/&amp;/et/g"`
+direblaguesay=`echo $lignesay | sed -e "s/<.*/ /g" | sed -e "s/&quot;/ /g" | sed -e "s/&egrave;/è/g" | sed -e "s/&ucirc;/û/g" | sed -e "s/&eacute;/é/g" | sed -e "s/&Eacute;/é/g" | sed -e "s/&icirc;/î/g"  | sed -e "s/&agrave;/à/g" | sed -e "s/arr&ecirc;/ê/g" | sed -e "s/&ecirc;/ê/g" | sed -e "s/&#8217;/'/g" | sed -e "s/&ccedil;/ç/g" | sed -e "s/&Ccedil;/ç/g" | sed -e "s/&rsquo;/'/g" | sed -e "s/h&ocirc;/ô/g" | sed -e "s/&amp;/et/g"`
 say "$direblaguesay"
 
 if [[ "$lignesay" =~ "?" ]]; then 
