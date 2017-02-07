@@ -10,7 +10,7 @@ For multi-language plugin:
 - optionally write the Description / Usage sections in several languages
 -->
 ## Description
-
+(07/02/17 Lit des lignes suplémentiare quand il trouve une longue blague)
 Jarvis raconte des blagues...  tiré directement d'internet...
 
 ## Languages
@@ -25,7 +25,7 @@ jarvis: - Mon rêve, ce serait d'épouser un archéologue.
 jarvis: - Ah bon ? Et pourquoi ?
 jarvisla: - Parce que plus on vieillit, plus il vous aime.
 
-You: racontes moi une blague
+You: racontes moi une blagues
 jarvis: Qu'est ce qu'une blonde intelligente ? 
 jarvis: Un labrador.
 
