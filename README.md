@@ -10,11 +10,14 @@ For multi-language plugin:
 - optionally write the Description / Usage sections in several languages
 -->
 ## Description
-Superbe prononciation avec Speech synthesis=google
+ATTENTION: Superbe prononciation avec Speech synthesis=google (je n'ai pas testé avec les autres système de synthétiseur vocal)
 
+(20/02/17 respecte la poncuation)
 (09/02/17 meilleur naration des blagues)
 (07/02/17 Lit des lignes suplémentiare quand il trouve une longue blague)
-Jarvis raconte des blagues...  tiré directement d'internet...
+
+
+Jarvis raconte des blagues...  ATTTENTION Elles sont tiré directement d'internet... donc vous ne pouvez pas en rajouter !!
 
 ## Languages
 
