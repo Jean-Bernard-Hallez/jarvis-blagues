@@ -232,7 +232,7 @@ estquestionblagues=`echo $direblaguesayok1 | cut -d' ' -f1`
 	if [[ "$estquestionblagues" =~ "Quelle" ]] || [[ "$estquestionblagues" =~ "quel" ]] || [[ "$estquestionblagues" =~ "pourquoi" ]] || [[ "$estquestionblagues" =~ "que" ]] || [[ "$estquestionblagues" =~ "qu'est" ]]; then 
 	say " $direblaguesayok1 "; 
 		 
-		if $jv_api; then
+		if $jv_api && $keyboard; then
 		 say " $direblaguesayok1 ";
 		 return
 		 else
