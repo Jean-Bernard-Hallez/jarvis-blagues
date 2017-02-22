@@ -236,24 +236,63 @@ if [[ "$estquestionblagues" =~ "Quelle" ]] || [[ "$estquestionblagues" =~ "quel"
 	if [[ "$finponctuation" = "?" ]]; then 
 	say " $direblaguesayok1 "; 
 	pointinterrogationGONG
-	else
+	return
+	fi
+
 	# --- Si il y  un ? au milieu de la pharse
+	if [[ "$direblaguesayok1" =~ "?" ]]; then
+	reponseprov=`echo $direblaguesayok1  | cut -d'?' -f1`
+	say "$reponseprov ?"
+	pointinterrogationGONG	
+	reponseprov=`echo $direblaguesayok1  | cut -d'?' -f2`
+	say "$reponseprov ?"
+	return
+	fi	
+
+	if [[ "$direblaguesayok1" =~ "." ]]; then
+	# --- Si il y  un . au milieu de la pharse
+	reponseprov=`echo $direblaguesayok1  | cut -d'.' -f1`
+	say "$reponseprov ."
+	pointinterrogationGONG	
+	reponseprov=`echo $direblaguesayok1  | cut -d'.' -f2`
+	say "$reponseprov ."
+	return
+	fi
+
+else
+
+monsieuretmadame=`echo $direblaguesayok1 | grep -io '\(monsieur\|madame\|fils\|fille\)' | wc -l`
+if [[ "$monsieuretmadame" == "3" ]]; then # --- Si il y  un ? au milieu de la pharse
+	if [[ "$direblaguesayok1" =~ "?" ]]; then
 	reponseprov=`echo $direblaguesayok1  | cut -d'?' -f1`
 	say "$reponseprov ?"
 	pointinterrogationGONG	
 	reponseprov=`echo $direblaguesayok1  | cut -d'?' -f2`
 	say "$reponseprov ?"
 	fi
-else
 
-say "$direblaguesayok1"
+	if [[ "$direblaguesayok1" =~ ":" ]]; then
+	reponseprov=`echo $direblaguesayok1  | cut -d':' -f1`
+	say "$reponseprov :"
+	pointinterrogationGONG	
+	reponseprov=`echo $direblaguesayok1  | cut -d':' -f2`
+	say "$reponseprov :"
+	fi
+# else
+# say "----- $direblaguesayok1 -----"
+fi
 
 fi
+
+
 }
 
 
 pointinterrogationGONG() {
-if [[ "$jv_api" == "false" ]] && [[ "$keyboard" == "true" ]]; then
+# say "api $jv_api et keyboard $keyboard"
+
+if [[ "$jv_api" == "true" ]] || [[ "$keyboard" == "true" ]] ; then
+say "..."
 return
 else
 # echo "--- Pause 4 sec ---  "
