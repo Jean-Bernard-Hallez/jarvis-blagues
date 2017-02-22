@@ -10,6 +10,8 @@ finlignealireblague=261
 varchemblague="$jv_dir/plugins/jarvis-blagues/toto.txt"
 
 wget -q - http://humour-blague.com/blagues-2/index.php# -O $varchemblague
+iconv -f cp1252 -t utf8 "$varchemblague" | sponge "$varchemblague"
+
 
 while test $debutlignealireblague != $finlignealireblague
 do
@@ -23,7 +25,7 @@ done
 
 
 jv_pg_ct_blaguesay() {
-# maintenant jes lis la ligne A 
+# maintenant je lis la ligne A 
 transcritblague            
 blaguesaytestdebut # test la ponctuation Minuscule, majuscule, point ? ou .
 memolignedetestA=$debutlignealireblague
@@ -48,6 +50,7 @@ fi
 	pointinterrogationoupoint
 	return
 	fi
+
 	if [[ "$blaguesaymajusculeB" =~ "min" ]]; then
 
 		# ### maintenant je vais vérifier si je dois coller la ligne d'après C à B
@@ -59,7 +62,6 @@ fi
 		blaguesaymajusculeC="$blaguesaymajuscule"
 		if [[ "$blaguesaymajusculeint" =~ "int" ]] || [[ "$blaguesaymajusculeint" =~ "poin" ]]; then # Je vais voir si la fin de la phrase est  ? ou un . ou rien
 		direblaguesayok="$direblaguesayokA $direblaguesayokB $direblaguesayok"
-	
 		pointinterrogationoupoint
 		return
 		fi
@@ -151,8 +153,8 @@ return
 transcritblague() {
 blaguesaymajuscule=""
 lignesay=$(sed -n "$debutlignealireblague p" $varchemblague)
-direblaguesayok=`echo $lignesay | sed -e "s/<.*/ /g" | sed -e "s/&quot;/ /g" |  sed -e "s/&ugrave;/ù/g" |sed -e "s/&ucirc;/û/g" | sed -e "s/&eacute;/é/g" | sed -e "s/&Eacute;/é/g" | sed -e "s/&egrave;/è/g" | sed -e "s/&icirc;/î/g" | sed -e "s/&agrave;/à/g" | sed -e "s/&ecirc;/ê/g" | sed -e "s/&#8217;/'/g" | sed -e "s/&ccedil;/ç/g" | sed -e "s/&Ccedil;/ç/g" | sed -e "s/&rsquo;/'/g" | sed -e "s/&ocirc;/ô/g" | sed -e "s/&amp;/et/g" | sed -e "s/ &laquo;/ /g" | sed -e "s/ &raquo;/ /g" | sed -e "s/-\./-/g"`
-#  sed -e "s/\..././g"|
+direblaguesayok=`echo $lignesay | sed -e "s/<.*/ /g" | sed -e "s/&quot;/ /g" | sed -e "s/qu' un/qu'un/g" | sed -e "s/&acirc;/â/g" |  sed -e "s/&ugrave;/ù/g" |sed -e "s/&ucirc;/û/g" | sed -e "s/&eacute;/é/g" | sed -e "s/&Eacute;/é/g" | sed -e "s/&egrave;/è/g" | sed -e "s/&icirc;/î/g" | sed -e "s/&agrave;/à/g" | sed -e "s/&ecirc;/ê/g" | sed -e "s/&#8217;/'/g" | sed -e "s/&ccedil;/ç/g" | sed -e "s/&Ccedil;/ç/g" | sed -e "s/&rsquo;/'/g" | sed -e "s/&ocirc;/ô/g" | sed -e "s/&amp;/et/g" | sed -e "s/ &laquo;/ /g" | sed -e "s/ &raquo;/ /g" | sed -e "s/-\./-/g"`
+#  &acirc;
 }
 
 exitblaguesay() {
@@ -164,7 +166,6 @@ rm $varchemblague > /dev/null 2>&1
 blaguesaytestdebut() {
 # echo " $testpremierelet -------  minuscule ou caractère différent ------
 testpremierelet=`echo ${direblaguesayok:0:1}`
-
 re='[a-zA-Z]'
 
 if [ "$testpremierelet" != "${testpremierelet,,}" ]; then 
@@ -181,7 +182,7 @@ blaguesaymajuscule="dif"
 fi
 
 # --- Si il y  un ?
-finponctuation=`echo ${direblaguesayok:(-1)}`
+finponctuation=`echo ${direblaguesayok:(-3)}`
 if [[ "$finponctuation" = "?" ]]; then 
 # echo " -------  C'est une Question ------"
 blaguesaymajusculeint="int"
@@ -189,7 +190,7 @@ return
 fi
 
 # --- Si il y  un .
-finponctuation=`echo ${direblaguesayok:(-1)}`
+finponctuation=`echo ${direblaguesayok:(-3)}`
 if [[ "$finponctuation" = "." ]]; then 
 # echo " -------  C'est un Point ------"
 blaguesaymajusculeint="poi"
@@ -197,11 +198,10 @@ return
 fi
 
 blaguesaymajusculeint=""
-
-
 }
 
 coupelalignendeux() {
+
 string_length=`echo $avoirsicapasse | wc -c`
 if [[ "$string_length" == "2" ]]; then 
 return
@@ -223,28 +223,45 @@ else
 direblaguesayok1="$avoirsicapasse"
 pointinterrogation
 fi
+
 }
 
 
 pointinterrogation() {
 estquestionblagues=`echo $direblaguesayok1 | cut -d' ' -f1`
+if [[ "$estquestionblagues" =~ "Quelle" ]] || [[ "$estquestionblagues" =~ "quel" ]] || [[ "$estquestionblagues" =~ "pourquoi" ]] || [[ "$estquestionblagues" =~ "que" ]] || [[ "$estquestionblagues" =~ "qu'est" ]]; then 
 
-	if [[ "$estquestionblagues" =~ "Quelle" ]] || [[ "$estquestionblagues" =~ "quel" ]] || [[ "$estquestionblagues" =~ "pourquoi" ]] || [[ "$estquestionblagues" =~ "que" ]] || [[ "$estquestionblagues" =~ "qu'est" ]]; then 
+	# --- Si il y  un ? à la fin
+	finponctuation=`echo ${direblaguesayok:(-3)}`
+	if [[ "$finponctuation" = "?" ]]; then 
 	say " $direblaguesayok1 "; 
-		 
-		if $jv_api && $keyboard; then
-		 say " $direblaguesayok1 ";
-		 return
-		 else
-		 # echo "--- Pause 4 sec ---  "
-		 mpg321 "$jv_dir/plugins/jarvis-blagues/sonnette.mp3" > /dev/null 2>&1
-		 sleep 4
-		 mpg321 "$jv_dir/plugins/jarvis-blagues/sonnette.mp3" > /dev/null 2>&1
-		 # echo "--- Pause 4 sec ---  "
-		 fi
+	pointinterrogationGONG
 	else
-	say " $direblaguesayok1 ";
+	# --- Si il y  un ? au milieu de la pharse
+	reponseprov=`echo $direblaguesayok1  | cut -d'?' -f1`
+	say "$reponseprov ?"
+	pointinterrogationGONG	
+	reponseprov=`echo $direblaguesayok1  | cut -d'?' -f2`
+	say "$reponseprov ?"
 	fi
+else
+
+say "$direblaguesayok1"
+
+fi
+}
+
+
+pointinterrogationGONG() {
+if [[ "$jv_api" == "false" ]] && [[ "$keyboard" == "true" ]]; then
+return
+else
+# echo "--- Pause 4 sec ---  "
+mpg321 "$jv_dir/plugins/jarvis-blagues/sonnette.mp3" > /dev/null 2>&1
+sleep 4
+mpg321 "$jv_dir/plugins/jarvis-blagues/sonnette.mp3" > /dev/null 2>&1
+# echo "--- Pause 4 sec ---  "
+fi
 }
 
 pointinterrogationoupoint() {
