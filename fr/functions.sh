@@ -105,7 +105,7 @@ fi
 						return						
 							
 						else
-					
+
 						# A + B + C + D  à coller
 						debutlignealireblague=$memolignedetestD
 						debutlignealireblague=$(($debutlignealireblague + 1))				
@@ -126,6 +126,7 @@ fi
 					fi
 				
 		else
+		
 		# A + B à coller
 		debutlignealireblague=$memolignedetestB
 		debutlignealireblague=$(($debutlignealireblague + 1))
@@ -158,12 +159,13 @@ direblaguesayok=`echo $lignesay | sed -e "s/<.*/ /g" | sed -e "s/&quot;/ /g" | s
 }
 
 exitblaguesay() {
-# ### say "Fin... "
+# ##### say "Fin... "
 rm $varchemblague > /dev/null 2>&1
 }
 
 
 blaguesaytestdebut() {
+
 # echo " $testpremierelet -------  minuscule ou caractère différent ------
 testpremierelet=`echo ${direblaguesayok:0:1}`
 re='[a-zA-Z]'
@@ -182,8 +184,10 @@ blaguesaymajuscule="dif"
 fi
 
 # --- Si il y  un ?
-finponctuation=`echo ${direblaguesayok:(-3)}`
-if [[ "$finponctuation" = "?" ]]; then 
+# ##### finponctuation=`echo ${direblaguesayok:(-3)}`
+# ##### if [[ "$finponctuation" = "?" ]]; then 
+if [[ "$direblaguesayok" =~ "?" ]]; then 
+
 # echo " -------  C'est une Question ------"
 blaguesaymajusculeint="int"
 return
@@ -202,7 +206,6 @@ blaguesaymajusculeint=""
 }
 
 coupelalignendeux() {
-
 string_length=`echo $avoirsicapasse | wc -c`
 if [[ "$string_length" == "2" ]]; then 
 return
@@ -224,14 +227,35 @@ else
 direblaguesayok1="$avoirsicapasse"
 pointinterrogation
 fi
-
 }
 
+coupelalignendeuxfin() {
+string_length=`echo $avoirsicapasse | wc -c`
+if [[ "$string_length" == "2" ]]; then 
+return
+fi
+if [[ "$string_length" -gt "199" ]]; then # echo "je coupe la phrase sur une ponctuation"
+lignesay2=`echo $avoirsicapasse | cut -d'.' -f1`
+lignesay3=`echo $avoirsicapasse | cut -d'.' -f2-`
+# lignesay4=`echo $avoirsicapasse | cut -d'.' -f3-`
+direblaguesayok1="$lignesay2"
+say "$direblaguesayok1"
+direblaguesayok1="$lignesay3"
+say "$direblaguesayok1"
+# direblaguesayok1="$lignesay4"
+# pointinterrogation
+lignesay2=""
+lignesay3=""
+# lignesay4=""
+else
+direblaguesayok1="$avoirsicapasse"
+say "$direblaguesayok1"
+fi
+}
 
 pointinterrogation() {
 estquestionblagues=`echo $direblaguesayok1 | cut -d' ' -f1`
 if [[ "$estquestionblagues" =~ "Quelle" ]] || [[ "$estquestionblagues" =~ "quel" ]] || [[ "$estquestionblagues" =~ "pourquoi" ]] || [[ "$estquestionblagues" =~ "que" ]] || [[ "$estquestionblagues" =~ "qu'est" ]]; then 
-
 	# --- Si il y  un ? à la fin
 	finponctuation=`echo ${direblaguesayok:(-3)}`
 	if [[ "$finponctuation" = "?" ]]; then 
@@ -302,8 +326,12 @@ if [[ "$monsieuretmadame" == "3" ]]; then # --- Si il y  un ? au milieu de la ph
 	say "$reponseprov :"
 	fi
  else
- say "$direblaguesayok1"
+ # say "--- $direblaguesayok1 ---"
+avoirsicapasse="$direblaguesayok1"
+coupelalignendeuxfin
+return
 fi
+say "$direblaguesayok1"
 
 }
 
