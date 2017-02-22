@@ -3,3 +3,4 @@
 [[ -z $(which mpg321) ]] && sudo apt-get install mpg321
 [[ -z $(which wget) ]] && sudo apt-get install wget
 [[ -z $(which jq) ]] && sudo apt-get install jq
+[[ -z $(which moreutils) ]] && sudo apt-get install moreutils
