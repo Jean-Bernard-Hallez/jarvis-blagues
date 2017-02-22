@@ -198,6 +198,7 @@ return
 fi
 
 blaguesaymajusculeint=""
+
 }
 
 coupelalignendeux() {
@@ -259,7 +260,29 @@ if [[ "$estquestionblagues" =~ "Quelle" ]] || [[ "$estquestionblagues" =~ "quel"
 	return
 	fi
 
-else
+	if [[ "$direblaguesayok1" =~ ":" ]]; then
+	deuxpoint=`echo $direblaguesayok1 | grep -io ':' | wc -l`
+		if [[ "$deuxpoint" > "1" ]]; then
+
+		# --- Si il y  un : au milieu de la pharse
+		reponseprov=`echo $direblaguesayok1  | cut -d':' -f1-2`
+		say "$reponseprov :"
+		pointinterrogationGONG	
+		reponseprov=`echo $direblaguesayok1  | cut -d':' -f3`
+		say "$reponseprov"
+		return
+		else
+		reponseprov=`echo $direblaguesayok1  | cut -d':' -f1`
+		say "$reponseprov :"
+		pointinterrogationGONG	
+		reponseprov=`echo $direblaguesayok1  | cut -d':' -f2`
+		say "$reponseprov"
+		return
+
+		fi
+	fi
+
+fi
 
 monsieuretmadame=`echo $direblaguesayok1 | grep -io '\(monsieur\|madame\|fils\|fille\)' | wc -l`
 if [[ "$monsieuretmadame" == "3" ]]; then # --- Si il y  un ? au milieu de la pharse
@@ -281,9 +304,6 @@ if [[ "$monsieuretmadame" == "3" ]]; then # --- Si il y  un ? au milieu de la ph
  else
  say "$direblaguesayok1"
 fi
-
-fi
-
 
 }
 
