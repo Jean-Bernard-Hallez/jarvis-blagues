@@ -9,8 +9,8 @@ finlignealireblague=261
 
 varchemblague="$jv_dir/plugins/jarvis-blagues/toto.txt"
 
-wget -q - http://humour-blague.com/blagues-2/index.php# -O $varchemblague
-iconv -f cp1252 -t utf8 "$varchemblague" | sponge "$varchemblague"
+# wget -q - http://humour-blague.com/blagues-2/index.php# -O $varchemblague
+# iconv -f cp1252 -t utf8 "$varchemblague" | sponge "$varchemblague"
 
 
 while test $debutlignealireblague != $finlignealireblague
@@ -158,8 +158,8 @@ direblaguesayok=`echo $lignesay | sed -e "s/<.*/ /g" | sed -e "s/&quot;/ /g" | s
 }
 
 exitblaguesay() {
-# say "Fin... "
-rm $varchemblague > /dev/null 2>&1
+say "Fin... "
+# ##### rm $varchemblague > /dev/null 2>&1
 }
 
 
@@ -278,8 +278,8 @@ if [[ "$monsieuretmadame" == "3" ]]; then # --- Si il y  un ? au milieu de la ph
 	reponseprov=`echo $direblaguesayok1  | cut -d':' -f2`
 	say "$reponseprov :"
 	fi
-# else
-# say "----- $direblaguesayok1 -----"
+ else
+ say "$direblaguesayok1"
 fi
 
 fi
