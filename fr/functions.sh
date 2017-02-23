@@ -154,15 +154,9 @@ return
 transcritblague() {
 blaguesaymajuscule=""
 lignesay=$(sed -n "$debutlignealireblague p" $varchemblague)
-direblaguesayok=`echo $lignesay | sed -e "s/<.*/ /g" | sed -e "s/&quot;/ /g" | sed -e "s/qu' un/qu'un/g" | sed -e "s/&acirc;/â/g" |  sed -e "s/&ugrave;/ù/g" |sed -e "s/&ucirc;/û/g" | sed -e "s/&eacute;/é/g" | sed -e "s/&Eacute;/é/g" | sed -e "s/&egrave;/è/g" | sed -e "s/&icirc;/î/g" | sed -e "s/&agrave;/à/g" | sed -e "s/&ecirc;/ê/g" | sed -e "s/&#8217;/'/g" | sed -e "s/&ccedil;/ç/g" | sed -e "s/&Ccedil;/ç/g" | sed -e "s/&rsquo;/'/g" | sed -e "s/&ocirc;/ô/g" | sed -e "s/&amp;/et/g" | sed -e "s/ &laquo;/ /g" | sed -e "s/ &raquo;/ /g" | sed -e "s/-\./-/g"`
-#  &acirc;
+direblaguesayok=`echo $lignesay | sed -e "s/<.*/ /g" | sed -e "s/&quot;/ /g" | sed -e "s/&#146;/'/g" | sed -e "s/qu' un/qu'un/g" | sed -e "s/&acirc;/â/g" |  sed -e "s/&ugrave;/ù/g" |sed -e "s/&ucirc;/û/g" | sed -e "s/&eacute;/é/g" | sed -e "s/&Eacute;/é/g" | sed -e "s/&egrave;/è/g" | sed -e "s/&icirc;/î/g" | sed -e "s/&agrave;/à/g" | sed -e "s/&ecirc;/ê/g" | sed -e "s/&#8217;/'/g" | sed -e "s/&ccedil;/ç/g" | sed -e "s/&Ccedil;/ç/g" | sed -e "s/&rsquo;/'/g" | sed -e "s/&ocirc;/ô/g" | sed -e "s/&amp;/et/g" | sed -e "s/ &laquo;/ /g" | sed -e "s/ &raquo;/ /g" | sed -e "s/-\./-/g"`
+#  &#146;
 }
-
-exitblaguesay() {
-# ##### say "Fin... "
-rm $varchemblague > /dev/null 2>&1
-}
-
 
 blaguesaytestdebut() {
 
@@ -270,7 +264,7 @@ if [[ "$estquestionblagues" =~ "Quelle" ]] || [[ "$estquestionblagues" =~ "quel"
 	say "$reponseprov ?"
 	pointinterrogationGONG	
 	reponseprov=`echo $direblaguesayok1  | cut -d'?' -f2`
-	say "$reponseprov ?"
+	say "$reponseprov"
 	return
 	fi	
 
@@ -280,7 +274,7 @@ if [[ "$estquestionblagues" =~ "Quelle" ]] || [[ "$estquestionblagues" =~ "quel"
 	say "$reponseprov ."
 	pointinterrogationGONG	
 	reponseprov=`echo $direblaguesayok1  | cut -d'.' -f2`
-	say "$reponseprov ."
+	say "$reponseprov"
 	return
 	fi
 
@@ -363,4 +357,9 @@ if [[ "$blaguesaymajusculeint" =~ "poi" ]]; then # Je vais voir si la fin de la 
 say "$direblaguesayok"
 debutlignealireblague=$(($debutlignealireblague + 1))
 fi
+}
+
+exitblaguesay() {
+# ####say "Fin... "
+rm $varchemblague > /dev/null 2>&1
 }
