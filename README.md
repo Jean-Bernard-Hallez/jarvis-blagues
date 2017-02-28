@@ -12,6 +12,7 @@ For multi-language plugin:
 ## Description
 ATTENTION: Superbe prononciation avec Speech synthesis=google (je n'ai pas testé avec les autres système de synthétiseur vocal)
 
+(28/02/17 Rajout de "repète la dernière blague".)
 (22/02/17 respecte la poncuation, traite Mr et Mme avec pause et gong quand il y a des questions)
 (09/02/17 meilleur naration des blagues)
 (07/02/17 Lit des lignes suplémentiare quand il trouve une longue blague)
@@ -31,9 +32,19 @@ jarvis: - Mon rêve, ce serait d'épouser un archéologue.
 jarvis: - Ah bon ? Et pourquoi ?
 jarvisla: - Parce que plus on vieillit, plus il vous aime.
 
-You: racontes moi une blagues
+You: racontes une blague
+jarvis: Quelle est la différence entre une gendarmerie et de la lessive .
+jarvis: Dans la lessive il y a au moins trois agents actifs
+
+You: racontes moi une blague
 jarvis: Qu'est ce qu'une blonde intelligente ? 
 jarvis: Un labrador.
+
+You: répète la dernière blague
+jarvis: Qu'est ce qu'une blonde intelligente ? 
+jarvis: Un labrador.
+
+
 
 ## Author
 [JB](https://github.com/Jean-Bernard-Hallez/jarvis-blagues)

@@ -8,7 +8,8 @@ debutlignealireblague=236
 finlignealireblague=261
 
 varchemblague="$jv_dir/plugins/jarvis-blagues/toto.txt"
-
+repeteblaguedir="$jv_dir/plugins/jarvis-blagues/rep-toto.txt"
+echo "" > $repeteblaguedir > /dev/null 2>&1
 wget -q - http://humour-blague.com/blagues-2/index.php# -O $varchemblague
 iconv -f cp1252 -t utf8 "$varchemblague" | sponge "$varchemblague"
 
@@ -233,16 +234,18 @@ lignesay2=`echo $avoirsicapasse | cut -d'.' -f1`
 lignesay3=`echo $avoirsicapasse | cut -d'.' -f2-`
 # lignesay4=`echo $avoirsicapasse | cut -d'.' -f3-`
 direblaguesayok1="$lignesay2"
+retienblague="$direblaguesayok1"
+repeteblague
 say "$direblaguesayok1"
 direblaguesayok1="$lignesay3"
+repeteblague
 say "$direblaguesayok1"
-# direblaguesayok1="$lignesay4"
-# pointinterrogation
 lignesay2=""
 lignesay3=""
-# lignesay4=""
 else
 direblaguesayok1="$avoirsicapasse"
+retienblague="$direblaguesayok1"
+repeteblague
 say "$direblaguesayok1"
 fi
 }
@@ -253,6 +256,8 @@ if [[ "$estquestionblagues" =~ "Quelle" ]] || [[ "$estquestionblagues" =~ "quel"
 	# --- Si il y  un ? à la fin
 	finponctuation=`echo ${direblaguesayok:(-3)}`
 	if [[ "$finponctuation" = "?" ]]; then 
+	retienblague="$direblaguesayok1"
+	repeteblague
 	say " $direblaguesayok1 "; 
 	pointinterrogationGONG
 	return
@@ -261,9 +266,13 @@ if [[ "$estquestionblagues" =~ "Quelle" ]] || [[ "$estquestionblagues" =~ "quel"
 	# --- Si il y  un ? au milieu de la pharse
 	if [[ "$direblaguesayok1" =~ "?" ]]; then
 	reponseprov=`echo $direblaguesayok1  | cut -d'?' -f1`
+	retienblague="$reponseprov ?"
+	repeteblague
 	say "$reponseprov ?"
 	pointinterrogationGONG	
 	reponseprov=`echo $direblaguesayok1  | cut -d'?' -f2`
+	retienblague="$reponseprov"
+	repeteblague
 	say "$reponseprov"
 	return
 	fi	
@@ -271,9 +280,13 @@ if [[ "$estquestionblagues" =~ "Quelle" ]] || [[ "$estquestionblagues" =~ "quel"
 	if [[ "$direblaguesayok1" =~ "." ]]; then
 	# --- Si il y  un . au milieu de la pharse
 	reponseprov=`echo $direblaguesayok1  | cut -d'.' -f1`
+	retienblague="$reponseprov ."
+	repeteblague
 	say "$reponseprov ."
 	pointinterrogationGONG	
 	reponseprov=`echo $direblaguesayok1  | cut -d'.' -f2`
+	retienblague="$reponseprov"
+	repeteblague
 	say "$reponseprov"
 	return
 	fi
@@ -284,16 +297,24 @@ if [[ "$estquestionblagues" =~ "Quelle" ]] || [[ "$estquestionblagues" =~ "quel"
 
 		# --- Si il y  un : au milieu de la pharse
 		reponseprov=`echo $direblaguesayok1  | cut -d':' -f1-2`
+		retienblague="$reponseprov :"
+		repeteblague
 		say "$reponseprov :"
 		pointinterrogationGONG	
 		reponseprov=`echo $direblaguesayok1  | cut -d':' -f3`
+		retienblague="$reponseprov"
+		repeteblague
 		say "$reponseprov"
 		return
 		else
 		reponseprov=`echo $direblaguesayok1  | cut -d':' -f1`
+		retienblague="$reponseprov :"
+		repeteblague
 		say "$reponseprov :"
 		pointinterrogationGONG	
 		reponseprov=`echo $direblaguesayok1  | cut -d':' -f2`
+		retienblague="$reponseprov"
+		repeteblague
 		say "$reponseprov"
 		return
 
@@ -306,25 +327,34 @@ monsieuretmadame=`echo $direblaguesayok1 | grep -io '\(monsieur\|madame\|fils\|f
 if [[ "$monsieuretmadame" == "3" ]]; then # --- Si il y  un ? au milieu de la pharse
 	if [[ "$direblaguesayok1" =~ "?" ]]; then
 	reponseprov=`echo $direblaguesayok1  | cut -d'?' -f1`
+	retienblague="$reponseprov ?"
+	repeteblague
 	say "$reponseprov ?"
 	pointinterrogationGONG	
 	reponseprov=`echo $direblaguesayok1  | cut -d'?' -f2`
+	retienblague="$reponseprov ?"
+	repeteblague
 	say "$reponseprov ?"
 	fi
 
 	if [[ "$direblaguesayok1" =~ ":" ]]; then
 	reponseprov=`echo $direblaguesayok1  | cut -d':' -f1`
+	retienblague="$reponseprov :"
+	repeteblague
 	say "$reponseprov :"
 	pointinterrogationGONG	
 	reponseprov=`echo $direblaguesayok1  | cut -d':' -f2`
+	retienblague="$reponseprov :"
+	repeteblague
 	say "$reponseprov :"
 	fi
  else
- # say "--- $direblaguesayok1 ---"
 avoirsicapasse="$direblaguesayok1"
 coupelalignendeuxfin
 return
 fi
+retienblague="$direblaguesayok1"
+	repeteblague
 say "$direblaguesayok1"
 
 }
@@ -354,12 +384,26 @@ return
 fi
 
 if [[ "$blaguesaymajusculeint" =~ "poi" ]]; then # Je vais voir si la fin de la phrase est un . 
+retienblague="$direblaguesayok"
+	repeteblague
 say "$direblaguesayok"
 debutlignealireblague=$(($debutlignealireblague + 1))
 fi
 }
 
+jv_pg_ct_blague_repete() {
+repeteblaguedir="$jv_dir/plugins/jarvis-blagues/rep-toto.txt"
+while read line; 
+do say "$line"; 
+done < $repeteblaguedir
+}
+
+
+repeteblague() {
+echo "$retienblague" >> $repeteblaguedir
+}
+
 exitblaguesay() {
-# ####say "Fin... "
+# say "Fin... "
 rm $varchemblague > /dev/null 2>&1
 }
