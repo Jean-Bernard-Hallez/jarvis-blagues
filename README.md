@@ -11,7 +11,7 @@ For multi-language plugin:
 -->
 ## Description
 ATTENTION: Superbe prononciation avec Speech synthesis=google (je n'ai pas testé avec les autres système de synthétiseur vocal)
-
+(02/03/17 rajout de plusieurs fonctions comme: Retiens ma blague, combien de blagues au total, lit la blague numéro X)
 (28/02/17 correction accent ë + Rajout de "repète la dernière blague".)
 (22/02/17 respecte la poncuation, traite Mr et Mme avec pause et gong quand il y a des questions)
 (09/02/17 meilleur naration des blagues)
@@ -43,6 +43,18 @@ jarvis: Un labrador.
 You: répète la dernière blague
 jarvis: Qu'est ce qu'une blonde intelligente ? 
 jarvis: Un labrador.
+
+You: retiens la dernière blague
+jarvis: J'ai sauvegardé la denière blague dans toto 5
+
+You: j'ai combien de blagues sauvegardées
+jarvis:Tu as sauvegardé 8 blagues
+
+You: lit la blague Numéro 4
+jarvis:Voici la blague numéro 4 sauvegardé:
+jarvis:Voici la blague numéro 4 sauvegardé:
+jarvis:- Qu'est-ce que les enfants usent le plus à l'école ?
+jarvis:- Les professeurs !
 
 
 

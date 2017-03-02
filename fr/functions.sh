@@ -407,3 +407,24 @@ exitblaguesay() {
 # say "Fin... "
 rm $varchemblague > /dev/null 2>&1
 }
+
+jv_pg_ct_blague_retient() {
+BLAGUENUMMEMTOT=`find  $jv_dir/plugins/jarvis-blagues/ -name "rep-toto*.txt" | wc -l `
+cp $jv_dir/plugins/jarvis-blagues/rep-toto.txt $jv_dir/plugins/jarvis-blagues/rep-toto$BLAGUENUMMEMTOT.txt
+say "J'ai sauvegardé la denière blague dans toto $BLAGUENUMMEMTOT"
+}
+
+jv_pg_ct_blague_litnum() {
+BLAGUELIRENUMERO="$jv_dir/plugins/jarvis-blagues/rep-toto$LIBLAGUENUMERO.txt"
+say "Voici la blague numéro $LIBLAGUENUMERO sauvegardé:"
+while read line; 
+do say "$line"; 
+done < $BLAGUELIRENUMERO
+}
+
+jv_pg_ct_blague_combien() {
+BLAGUENUMMEMTOT=$((`find  $jv_dir/plugins/jarvis-blagues/ -name "rep-toto*.txt" | wc -l ` - 1))
+say "Tu as sauvegardé $BLAGUENUMMEMTOT blagues"
+}
+
+

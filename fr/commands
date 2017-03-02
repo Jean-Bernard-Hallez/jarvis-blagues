@@ -1,3 +1,5 @@
 *RACONT*BLAGUE*==jv_pg_ct_blague
 *REPETE*BLAGUE*==jv_pg_ct_blague_repete
-
+*RETIEN*BLAGUE*==jv_pg_ct_blague_retient
+*LI*BLAGUE*NUM* (*)==LIBLAGUENUMERO=(1); jv_pg_ct_blague_litnum
+*COMBIEN*BLAGUE*==jv_pg_ct_blague_combien
