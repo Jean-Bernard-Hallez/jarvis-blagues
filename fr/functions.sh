@@ -7,8 +7,8 @@ jv_pg_ct_blague() {
 debutlignealireblague=236
 finlignealireblague=261
 
-varchemblague="$jv_dir/plugins/jarvis-blagues/toto.txt"
-repeteblaguedir="$jv_dir/plugins/jarvis-blagues/rep-toto.txt"
+varchemblague="$jv_dir/plugins_installed/jarvis-blagues/toto.txt"
+repeteblaguedir="$jv_dir/plugins_installed/jarvis-blagues/rep-toto.txt"
 echo "" > $repeteblaguedir > /dev/null 2>&1
 wget -q - http://humour-blague.com/blagues-2/index.php# -O $varchemblague
 iconv -f cp1252 -t utf8 "$varchemblague" | sponge "$varchemblague"
@@ -368,9 +368,9 @@ say "..."
 return
 else
 # echo "--- Pause 4 sec ---  "
-mpg321 "$jv_dir/plugins/jarvis-blagues/sonnette.mp3" > /dev/null 2>&1
+mpg321 "$jv_dir/plugins_installed/jarvis-blagues/sonnette.mp3" > /dev/null 2>&1
 sleep 4
-mpg321 "$jv_dir/plugins/jarvis-blagues/sonnette.mp3" > /dev/null 2>&1
+mpg321 "$jv_dir/plugins_installed/jarvis-blagues/sonnette.mp3" > /dev/null 2>&1
 # echo "--- Pause 4 sec ---  "
 fi
 }
@@ -392,7 +392,7 @@ fi
 }
 
 jv_pg_ct_blague_repete() {
-repeteblaguedir="$jv_dir/plugins/jarvis-blagues/rep-toto.txt"
+repeteblaguedir="$jv_dir/plugins_installed/jarvis-blagues/rep-toto.txt"
 while read line; 
 do say "$line"; 
 done < $repeteblaguedir
@@ -409,13 +409,13 @@ rm $varchemblague > /dev/null 2>&1
 }
 
 jv_pg_ct_blague_retient() {
-BLAGUENUMMEMTOT=`find  $jv_dir/plugins/jarvis-blagues/ -name "rep-toto*.txt" | wc -l `
-cp $jv_dir/plugins/jarvis-blagues/rep-toto.txt $jv_dir/plugins/jarvis-blagues/rep-toto$BLAGUENUMMEMTOT.txt
+BLAGUENUMMEMTOT=`find  $jv_dir/plugins_installed/jarvis-blagues/ -name "rep-toto*.txt" | wc -l `
+cp $jv_dir/plugins_installed/jarvis-blagues/rep-toto.txt $jv_dir/plugins_installed/jarvis-blagues/rep-toto$BLAGUENUMMEMTOT.txt
 say "J'ai sauvegardé la denière blague dans toto $BLAGUENUMMEMTOT"
 }
 
 jv_pg_ct_blague_litnum() {
-BLAGUELIRENUMERO="$jv_dir/plugins/jarvis-blagues/rep-toto$LIBLAGUENUMERO.txt"
+BLAGUELIRENUMERO="$jv_dir/plugins_installed/jarvis-blagues/rep-toto$LIBLAGUENUMERO.txt"
 say "Voici la blague numéro $LIBLAGUENUMERO sauvegardé:"
 while read line; 
 do say "$line"; 
@@ -423,7 +423,7 @@ done < $BLAGUELIRENUMERO
 }
 
 jv_pg_ct_blague_combien() {
-BLAGUENUMMEMTOT=$((`find  $jv_dir/plugins/jarvis-blagues/ -name "rep-toto*.txt" | wc -l ` - 1))
+BLAGUENUMMEMTOT=$((`find  $jv_dir/plugins_installed/jarvis-blagues/ -name "rep-toto*.txt" | wc -l ` - 1))
 say "Tu as sauvegardé $BLAGUENUMMEMTOT blagues"
 }
 

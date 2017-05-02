@@ -11,6 +11,7 @@ For multi-language plugin:
 -->
 ## Description
 ATTENTION: Superbe prononciation avec Speech synthesis=google (je n'ai pas testé avec les autres système de synthétiseur vocal)
+(02/05/17 Correction suite modif du "plugins_installed")
 (02/03/17 rajout de plusieurs fonctions comme: Retiens ma blague, combien de blagues au total, lit la blague numéro X)
 (28/02/17 correction accent ë + Rajout de "repète la dernière blague".)
 (22/02/17 respecte la poncuation, traite Mr et Mme avec pause et gong quand il y a des questions)
