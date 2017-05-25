@@ -2,6 +2,11 @@
 # Here you can create functions which will be available from the commands file
 # You can also use here user variables defined in your config file
 
+blaguebug1 () {
+say ""
+}
+
+
 
 jv_pg_ct_blague() {
 debutlignealireblague=236
@@ -411,7 +416,7 @@ rm $varchemblague > /dev/null 2>&1
 jv_pg_ct_blague_retient() {
 BLAGUENUMMEMTOT=`find  $jv_dir/plugins_installed/jarvis-blagues/ -name "rep-toto*.txt" | wc -l `
 cp $jv_dir/plugins_installed/jarvis-blagues/rep-toto.txt $jv_dir/plugins_installed/jarvis-blagues/rep-toto$BLAGUENUMMEMTOT.txt
-say "J'ai sauvegardé la denière blague dans toto $BLAGUENUMMEMTOT"
+say "J'ai sauvegardé la dernière blague dans toto $BLAGUENUMMEMTOT"
 }
 
 jv_pg_ct_blague_litnum() {
