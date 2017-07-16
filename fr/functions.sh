@@ -2,10 +2,6 @@
 # Here you can create functions which will be available from the commands file
 # You can also use here user variables defined in your config file
 
-blaguebug1 () {
-say ""
-}
-
 
 
 jv_pg_ct_blague() {
@@ -161,7 +157,7 @@ transcritblague() {
 blaguesaymajuscule=""
 lignesay=$(sed -n "$debutlignealireblague p" $varchemblague)
 direblaguesayok=`echo $lignesay | sed -e "s/<.*/ /g" | sed -e "s/&quot;/ /g" | sed -e "s/&#146;/'/g" | sed -e "s/qu' un/qu'un/g" | sed -e "s/&acirc;/â/g" |  sed -e "s/&ugrave;/ù/g" |sed -e "s/&ucirc;/û/g" | sed -e "s/&eacute;/é/g" | sed -e "s/&Eacute;/é/g" | sed -e "s/&egrave;/è/g" | sed -e "s/&icirc;/î/g" | sed -e "s/&agrave;/à/g" | sed -e "s/&ecirc;/ê/g" | sed -e "s/&euml;/ë/g" | sed -e "s/&#8217;/'/g" | sed -e "s/&ccedil;/ç/g" | sed -e "s/&Ccedil;/ç/g" | sed -e "s/&rsquo;/'/g" | sed -e "s/&ocirc;/ô/g" | sed -e "s/&amp;/et/g" | sed -e "s/ &laquo;/ /g" | sed -e "s/ &raquo;/ /g" | sed -e "s/-\./-/g"`
-direblaguesayok=`echo $direblaguesayok | sed -e "s/&Ecirc;/Ê/g" | sed -e "s/&Egrave;/È/g" | sed -e "s/&Ugrave;/Ù/g" | sed -e "s/&Agrave;/À/g" | sed -e "s/&Acirc;/Â/g" | sed -e "s/&Icirc;/Î/g"`
+direblaguesayok=`echo $direblaguesayok | sed -e "s/&Ecirc;/Ê/g" | sed -e "s/&Egrave;/È/g" | sed -e "s/&Ugrave;/Ù/g" | sed -e "s/&Agrave;/À/g" | sed -e "s/&Acirc;/Â/g" | sed -e "s/&Icirc;/Î/g" | sed -e "s/&nbsp;/ /g"`
 
 
 #  &#146;
@@ -332,6 +328,7 @@ if [[ "$estquestionblagues" =~ "Quelle" ]] || [[ "$estquestionblagues" =~ "quel"
 fi
 
 monsieuretmadame=`echo $direblaguesayok1 | grep -io '\(monsieur\|madame\|fils\|fille\)' | wc -l`
+direblaguesayok1="jv_sanitize($direblaguesayok1)"
 if [[ "$monsieuretmadame" == "3" ]]; then # --- Si il y  un ? au milieu de la pharse
 	if [[ "$direblaguesayok1" =~ "?" ]]; then
 	reponseprov=`echo $direblaguesayok1  | cut -d'?' -f1`
@@ -423,6 +420,16 @@ say "J'ai sauvegardé la dernière blague dans toto $BLAGUENUMMEMTOT"
 }
 
 jv_pg_ct_blague_litnum() {
+if [[ "$LIBLAGUENUMERO" == "un" ]]; then LIBLAGUENUMERO="1"; fi
+if [[ "$LIBLAGUENUMERO" == "deux" ]]; then LIBLAGUENUMERO="2"; fi
+if [[ "$LIBLAGUENUMERO" == "trois" ]]; then LIBLAGUENUMERO="3"; fi
+if [[ "$LIBLAGUENUMERO" == "quatre" ]]; then LIBLAGUENUMERO="4"; fi
+if [[ "$LIBLAGUENUMERO" == "cinq" ]]; then LIBLAGUENUMERO="5"; fi
+if [[ "$LIBLAGUENUMERO" == "six" ]]; then LIBLAGUENUMERO="6"; fi
+if [[ "$LIBLAGUENUMERO" == "sept" ]]; then LIBLAGUENUMERO="7"; fi
+if [[ "$LIBLAGUENUMERO" == "huit" ]]; then LIBLAGUENUMERO="8"; fi
+if [[ "$LIBLAGUENUMERO" == "neuf" ]]; then LIBLAGUENUMERO="9"; fi
+
 BLAGUELIRENUMERO="$jv_dir/plugins_installed/jarvis-blagues/rep-toto$LIBLAGUENUMERO.txt"
 say "Voici la blague numéro $LIBLAGUENUMERO sauvegardé:"
 while read line; 
